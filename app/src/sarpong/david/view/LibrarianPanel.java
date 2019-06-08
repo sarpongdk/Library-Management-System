@@ -7,6 +7,10 @@ import java.awt.event.*;
 
 public class LibrarianPanel extends JPanel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = -5136974313100589343L;
    private JButton addBooks;
    private JButton viewBooks;
    private JButton issueBook, viewIssuedBooks;
@@ -18,7 +22,7 @@ public class LibrarianPanel extends JPanel
    {
       super();
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-      setPreferredSize(new Dimension(300, 450));
+      setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       title = new JLabel("Librarian Section");
       addBooks = new JButton("Add Book");

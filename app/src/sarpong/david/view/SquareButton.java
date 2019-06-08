@@ -6,6 +6,11 @@ import java.awt.*;
 
 public class SquareButton extends JButton
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 6324484517731279704L;
+
    public SquareButton()
    {
       super();

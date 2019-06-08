@@ -7,6 +7,10 @@ import java.awt.event.*;
 
 public class AdminPanel extends JPanel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 1L;
    private JButton add;
    private JButton view;
    private JButton delete;
@@ -16,7 +20,7 @@ public class AdminPanel extends JPanel
    {
       super();
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-      setPreferredSize(new Dimension(300, 450));
+      setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       add = new JButton("Add Librarian");
       view = new JButton("View Librarian");

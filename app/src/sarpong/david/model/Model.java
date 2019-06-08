@@ -31,18 +31,30 @@ public class Model
       }
    }
 
-   public boolean validateLogin(String username, String password)
+   public boolean validateLogin(String username, char[] password)
    {
-      String sqlCommand = "SELECT * FROM user_account WHERE username='" + username + "' AND password='" + password "'";
+      String pwd = new String(password);
+      username = username.trim();
+      
+      String sqlCommand = "SELECT * FROM lib.user_account WHERE username='" + username + "' AND password='" + pwd + "'";
 
-      resultSet = statement.executeQuery(sqlCommand);
-
-      if (resultSet.next())
+      try
       {
-         return true;
-      }
-      else
+         resultSet = statement.executeQuery(sqlCommand);
+         
+         if (resultSet.next())
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
+      } 
+      catch (SQLException e)
       {
+         System.err.println("Cannot find query");
+         e.printStackTrace();
          return false;
       }
    }
@@ -85,5 +97,6 @@ public class Model
    public static void main(String[] args)
    {
       Model model = new Model();
+      System.out.println(model.toString());
    }
 }

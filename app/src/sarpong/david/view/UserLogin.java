@@ -1,3 +1,5 @@
+package sarpong.david.view;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -5,6 +7,11 @@ import java.awt.event.*;
 
 public class UserLogin extends JPanel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 1462397573602204861L;
+
    private static final int MAX_CHARACTERS = 30;
 
    private JTextField username;
@@ -15,6 +22,7 @@ public class UserLogin extends JPanel
    {
       super();
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       username = new JTextField(MAX_CHARACTERS);
       password = new JPasswordField(MAX_CHARACTERS);
@@ -30,7 +38,7 @@ public class UserLogin extends JPanel
       login.addActionListener(listener);
    }
 
-   public String getPassword()
+   public char[] getPassword()
    {
       return password.getPassword();
    }

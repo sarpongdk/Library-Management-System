@@ -1,5 +1,7 @@
 package sarpong.david.view;
 
+import sarpong.david.model.*;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -7,7 +9,11 @@ import java.awt.event.*;
 
 public class View extends JFrame
 {
-   public static final int WIDTH = 300;
+   /**
+    * 
+    */
+   private static final long serialVersionUID = -599898895348122949L;
+   public static final int WIDTH = 650;
    public static final int HEIGHT = 450;
 
    private UserLogin userLogin;
@@ -38,7 +44,7 @@ public class View extends JFrame
       return userLogin.getUsername();
    }
 
-   public String getLoginPassword()
+   public char[] getLoginPassword()
    {
       return userLogin.getPassword();
    }
@@ -72,16 +78,21 @@ public class View extends JFrame
       return register.getGender();
    }
 
-   public String getRegistrationAccessRights()
+   public Role getRegistrationAccessRights()
    {
       return register.getAccessRights();
    }
 
-   public String getRegistrationAge()
+   public Integer getRegistrationAge()
    {
       return register.getAge();
    }
 
+   public char[] getRegistrationPassword()
+   {
+      return register.getPassword();
+   }
+   
    public void displayLogin()
    {
       changePanel(login);
@@ -121,6 +132,11 @@ public class View extends JFrame
    {
       login.addAdminLoginListener(listener);
    }
+   
+   public void addRegistrationListener(ActionListener listener)
+   {
+      register.addRegistrationListener(listener);
+   }
 
    public void addLogoutListener(ActionListener listener)
    {
@@ -128,6 +144,11 @@ public class View extends JFrame
       librarian.addLogoutListener(listener);
    }
 
+   public void addCreateAccountListener(ActionListener listener)
+   {
+      login.addRegistrationListener(listener);
+   }
+   
    public void clearLogin()
    {
       userLogin.clearLogin();

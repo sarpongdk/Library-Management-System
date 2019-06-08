@@ -2,10 +2,15 @@ package sarpong.david.view;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.awt.event.*;
 
 public class LoginPanel extends JPanel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 8286002791700727060L;
    private JLabel title;
    private JButton adminLogin, librarianLogin, register;
 
@@ -13,6 +18,7 @@ public class LoginPanel extends JPanel
    {
       super();
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       title = new JLabel("Library Management");
       adminLogin = new JButton("Admin Login");

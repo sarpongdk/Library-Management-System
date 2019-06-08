@@ -15,11 +15,12 @@ public class Controller
       this.model = model;
       this.view = view;
 
-      this.view.addAdminLoginListener(adminLoginListener);
-      this.view.addLibrarianLoginListener(librarianLoginListener);
+      this.view.addAdminLoginListener(userLoginListener);
+      this.view.addLibrarianLoginListener(userLoginListener);
       this.view.addLogoutListener(logoutListener);
-      this.view.addLoginListener(logoutListener);
+      this.view.addLoginListener(loginListener);
       this.view.addRegistrationListener(registrationListener);
+      this.view.addCreateAccountListener(createAccountListener);
    }
 
    private ActionListener loginListener = new ActionListener() {
@@ -30,7 +31,7 @@ public class Controller
          view.clearLogin();
 
          String username = view.getLoginUsername(); 
-         String password = view.getLoginPassword();
+         char[] password = view.getLoginPassword();
 
          if (model.validateLogin(username, password))
          {
@@ -51,28 +52,27 @@ public class Controller
          String emailAddress = view.getRegistrationEmailAddress();
          Email email = new Email(emailAddress);
 
-         String password = view.getRegistrationPassword();
+         char[] password = view.getRegistrationPassword();
          int age = view.getRegistrationAge();
          
-         view.displayUserLogin(); 
       }
    };
 
-   private ActionListener adminLoginListener = new ActionListener() {
+   private ActionListener createAccountListener = new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+         view.displayRegistration(); 
+      }
+   };
+   
+   private ActionListener userLoginListener = new ActionListener() {
       
       @Override
       public void actionPerformed(ActionEvent e)
       {
          view.displayUserLogin(); 
-      }
-   };
-
-   private ActionListener librarianLoginListener = new ActionListener() {
-      
-      @Override
-      public void actionPerformed(ActionEvent e)
-      {
-         view.displayUserLogin();
       }
    };
 

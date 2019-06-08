@@ -1,12 +1,21 @@
 package sarpong.david.view;
 
+import sarpong.david.model.*;
+
+
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.util.Enumeration;
 import java.awt.*;
 
 public class RegistrationPanel extends JPanel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 4652657270140176410L;
+
    private static final int MAX_CHARACTERS = 30;
 
    private JTextField age, firstName, lastName, email;
@@ -19,6 +28,7 @@ public class RegistrationPanel extends JPanel
    {
       super();
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+      setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       firstName = new JTextField(MAX_CHARACTERS);
       lastName = new JTextField(MAX_CHARACTERS);
@@ -46,17 +56,23 @@ public class RegistrationPanel extends JPanel
       add(email);
       add(password);
       add(age);
-      add(gender);
-      add(role);
+      add(male);
+      add(female);
+      add(other);
+      add(librarian);
+      add(admin);
       add(register);
    }
 
-   public AccessRights getAccessRights()
+   public Role getAccessRights()
    {
-      AccessRights role;
+      Role position = null;
+      Enumeration<AbstractButton> buttons = role.getElements();
 
-      for (AbstractButton button: gender.getElements())
+      while (buttons.hasMoreElements())
       {
+         AbstractButton button = buttons.nextElement();
+         
          if (button.isSelected())
          {
             String text = button.getText();
@@ -64,25 +80,30 @@ public class RegistrationPanel extends JPanel
             switch (text)
             {
                case "Admin":
-                  role = AccessRights.Admin;
+                  position = Role.Admin;
                   break;
 
                case "Librarian":
-                  role = AccessRights.Librarian;
+                  position = Role.Librarian;
                   break;
             }
 
-            return role;
+            break;
          }
       }
+      
+      return position;
    }
 
    public Gender getGender()
    {
-      Gender gender;
+      Gender sex = null;
+      Enumeration<AbstractButton> buttons = gender.getElements();
 
-      for (AbstractButton button: gender.getElements())
+      while (buttons.hasMoreElements())
       {
+         AbstractButton button = buttons.nextElement();
+         
          if (button.isSelected())
          {
             String text = button.getText();
@@ -90,17 +111,19 @@ public class RegistrationPanel extends JPanel
             switch (text)
             {
                case "Male":
-                  gender = Gender.Male;
+                  sex = Gender.Male;
                   break;
 
                case "Female":
-                  gender = Gender.Female;
+                  sex = Gender.Female;
                   break;
             }
 
-            return gender;
+            break;
          }
       }
+      
+      return sex;
    }
 
    public String getFirstName()
@@ -118,7 +141,7 @@ public class RegistrationPanel extends JPanel
       return email.getText();
    }
 
-   public String getPassword()
+   public char[] getPassword()
    {
       return password.getPassword();
    }
@@ -130,7 +153,7 @@ public class RegistrationPanel extends JPanel
       return val;
    }
 
-   public void addRegisterListener(ActionListener listener)
+   public void addRegistrationListener(ActionListener listener)
    {
       register.addActionListener(listener);
    }

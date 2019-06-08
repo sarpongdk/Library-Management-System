@@ -1,21 +1,11 @@
 package sarpong.david.model;
 
-enum Gender
-{
-   Male, Female
-};
-
-enum AccessRights
-{
-   Librarian, Admin
-};
-
 public abstract class AbstractStaff
 {
    protected Name name;
    protected Email email;
    protected Gender gender;
-   protected AccessRights access;
+   protected Role access;
    protected int age;
 
    public AbstractStaff(Name name, Email email, Gender gender, int age)
@@ -46,7 +36,7 @@ public abstract class AbstractStaff
       return gender;
    }
 
-   public void setAccessRights(AccessRights rights)
+   public void setAccessRights(Role rights)
    {
       access = rights;
    }
