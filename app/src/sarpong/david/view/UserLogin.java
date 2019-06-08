@@ -13,9 +13,16 @@ public class UserLogin extends JPanel
 
    public UserLogin()
    {
+      super();
+      setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
       username = new JTextField(MAX_CHARACTERS);
       password = new JPasswordField(MAX_CHARACTERS);
       login = new JButton("Login");
+
+      add(username);
+      add(password);
+      add(login);
    }
 
    public void addLoginListener(ActionListener listener)
@@ -31,5 +38,11 @@ public class UserLogin extends JPanel
    public String getUsername()
    {
       return username.getText();
+   }
+
+   public void clearLogin()
+   {
+      username.setText("");
+      password.setText("");
    }
 }

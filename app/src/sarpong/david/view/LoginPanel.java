@@ -22,6 +22,7 @@ public class LoginPanel extends JPanel
       add(title);
       add(adminLogin);
       add(librarianLogin);
+      add(register);
    }
 
    public void addAdminLoginListener(ActionListener listener)

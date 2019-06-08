@@ -33,6 +33,16 @@ public class View extends JFrame
       setVisible(true);
    }
 
+   public String getLoginUsername()
+   {
+      return userLogin.getUsername();
+   }
+
+   public String getLoginPassword()
+   {
+      return userLogin.getPassword();
+   }
+
    private void changePanel(JPanel panel)
    {
       getContentPane().removeAll();
@@ -40,6 +50,36 @@ public class View extends JFrame
       pack();
       repaint();
       //revalidate();
+   }
+
+   public String getRegistrationFirstName()
+   {
+      return register.getFirstName();
+   }
+
+   public String getRegistrationLastName()
+   {
+      return register.getLastName();
+   }
+
+   public String getRegistrationEmailAddress()
+   {
+      return register.getEmailAddress();
+   }
+
+   public Gender getRegistrationGender()
+   {
+      return register.getGender();
+   }
+
+   public String getRegistrationAccessRights()
+   {
+      return register.getAccessRights();
+   }
+
+   public String getRegistrationAge()
+   {
+      return register.getAge();
    }
 
    public void displayLogin()
@@ -67,6 +107,11 @@ public class View extends JFrame
       changePanel(userLogin);
    }
 
+   public void addLoginListener(ActionListener listener)
+   {
+      userLogin.addLoginListener(listener);
+   }
+
    public void addLibrarianLoginListener(ActionListener listener)
    {
       login.addLibrarianLoginListener(listener);
@@ -81,6 +126,11 @@ public class View extends JFrame
    {
       admin.addLogoutListener(listener);
       librarian.addLogoutListener(listener);
+   }
+
+   public void clearLogin()
+   {
+      userLogin.clearLogin();
    }
 
    public static void main(String[] args)

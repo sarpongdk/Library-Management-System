@@ -18,7 +18,45 @@ public class Controller
       this.view.addAdminLoginListener(adminLoginListener);
       this.view.addLibrarianLoginListener(librarianLoginListener);
       this.view.addLogoutListener(logoutListener);
+      this.view.addLoginListener(logoutListener);
+      this.view.addRegistrationListener(registrationListener);
    }
+
+   private ActionListener loginListener = new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+         view.clearLogin();
+
+         String username = view.getLoginUsername(); 
+         String password = view.getLoginPassword();
+
+         if (model.validateLogin(username, password))
+         {
+            view.displayAdminSection();
+         }
+      }
+   };
+
+   private ActionListener registrationListener = new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+         String first = view.getRegistrationFirstName();
+         String last = view.getRegistrationLastName();
+         Name name = new Name(first, last);
+         
+         String emailAddress = view.getRegistrationEmailAddress();
+         Email email = new Email(emailAddress);
+
+         String password = view.getRegistrationPassword();
+         int age = view.getRegistrationAge();
+         
+         view.displayUserLogin(); 
+      }
+   };
 
    private ActionListener adminLoginListener = new ActionListener() {
       

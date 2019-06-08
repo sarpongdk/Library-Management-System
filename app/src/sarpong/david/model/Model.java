@@ -31,9 +31,20 @@ public class Model
       }
    }
 
-   public boolean verifyLogin(AbstractStaff staff)
+   public boolean validateLogin(String username, String password)
    {
-      return true;
+      String sqlCommand = "SELECT * FROM user_account WHERE username='" + username + "' AND password='" + password "'";
+
+      resultSet = statement.executeQuery(sqlCommand);
+
+      if (resultSet.next())
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
    }
 
    public void registerLibrarian()
