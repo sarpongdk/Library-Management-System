@@ -18,7 +18,7 @@ public class RegistrationPanel extends JPanel
 
    private static final int MAX_CHARACTERS = 30;
 
-   private JTextField age, firstName, lastName, email;
+   private PlaceHolderTextField age, firstName, lastName, email, username;
    private JRadioButton admin, librarian, male, female, other;
    private ButtonGroup gender, role;
    private JButton register;
@@ -30,10 +30,11 @@ public class RegistrationPanel extends JPanel
       setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
       setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
-      firstName = new JTextField(MAX_CHARACTERS);
-      lastName = new JTextField(MAX_CHARACTERS);
-      email = new JTextField(MAX_CHARACTERS);
-      age = new JTextField(MAX_CHARACTERS - (MAX_CHARACTERS - 5));
+      firstName = new PlaceHolderTextField(MAX_CHARACTERS, "First Name");
+      lastName = new PlaceHolderTextField(MAX_CHARACTERS, "Last Name");
+      email = new PlaceHolderTextField(MAX_CHARACTERS, "Email Address");
+      username = new PlaceHolderTextField(MAX_CHARACTERS, "Username");
+      age = new PlaceHolderTextField(MAX_CHARACTERS - (MAX_CHARACTERS - 5), "Age");
       password = new JPasswordField(MAX_CHARACTERS);
       register = new JButton("Register");
 
@@ -54,6 +55,7 @@ public class RegistrationPanel extends JPanel
       add(firstName);
       add(lastName);
       add(email);
+      add(username);
       add(password);
       add(age);
       add(male);
@@ -151,6 +153,11 @@ public class RegistrationPanel extends JPanel
       Integer val = new Integer(age.getText());
 
       return val;
+   }
+
+   public String getUsername()
+   {
+      return username.getText();
    }
 
    public void addRegistrationListener(ActionListener listener)

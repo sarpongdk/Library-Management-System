@@ -40,4 +40,12 @@ public class Email
 
       return false;
    }
+
+   @Override
+   public String toString()
+   {
+      String email = localPart + "@" + domain;
+
+      return email;
+   }
 }

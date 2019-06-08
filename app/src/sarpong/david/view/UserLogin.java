@@ -1,5 +1,7 @@
 package sarpong.david.view;
 
+import sarpong.david.model.*;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -25,7 +27,7 @@ public class UserLogin extends JPanel
       setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
 
       username = new JTextField(MAX_CHARACTERS);
-      password = new JPasswordField(MAX_CHARACTERS);
+      password = new JPasswordField();
       login = new JButton("Login");
 
       add(username);

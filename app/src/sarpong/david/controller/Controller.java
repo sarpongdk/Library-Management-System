@@ -28,15 +28,18 @@ public class Controller
       @Override
       public void actionPerformed(ActionEvent e)
       {
-         view.clearLogin();
-
-         String username = view.getLoginUsername(); 
          char[] password = view.getLoginPassword();
+         String username = view.getLoginUsername();
 
          if (model.validateLogin(username, password))
          {
-            view.displayAdminSection();
+            view.displayAdminSection(); //todo: display correct section based on role
          }
+         else
+         {
+            view.displayLoginError();
+         }
+         view.clearLogin();
       }
    };
 
@@ -49,12 +52,27 @@ public class Controller
          String last = view.getRegistrationLastName();
          Name name = new Name(first, last);
          
+         String username = view.getRegistrationUsername();
          String emailAddress = view.getRegistrationEmailAddress();
          Email email = new Email(emailAddress);
 
          char[] password = view.getRegistrationPassword();
          int age = view.getRegistrationAge();
-         
+         Gender gender = view.getRegistrationGender();
+         Role role = view.getRegistrationAccessRights();
+         AbstractStaff staff;
+
+         if (role == Role.Admin)
+         {
+            staff = new Admin(name, email, gender, age, username);
+         }
+         else
+         {
+            staff = new Librarian(name, email, gender, age, username);
+         }
+
+         model.createStaffAccount(staff, new String(password));
+         view.displayLogin();
       }
    };
 

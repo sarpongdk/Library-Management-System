@@ -58,6 +58,11 @@ public class View extends JFrame
       //revalidate();
    }
 
+   public String getRegistrationUsername()
+   {
+      return register.getUsername();
+   }
+
    public String getRegistrationFirstName()
    {
       return register.getFirstName();
@@ -154,6 +159,10 @@ public class View extends JFrame
       userLogin.clearLogin();
    }
 
+   public void displayLoginError()
+   {
+      JOptionPane.showMessageDialog(new JFrame("Error"), "Username and/or password do not match");
+   }
    public static void main(String[] args)
    {
       View view = new View();
