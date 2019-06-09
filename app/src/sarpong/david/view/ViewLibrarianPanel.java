@@ -1,7 +1,11 @@
+package sarpong.david.view;
+
 import javax.swing.*;
 import javax.swing.table.*;
 
 import java.awt.*;
+
+import sarpong.david.model.*;
 
 public class ViewLibrarianPanel extends JPanel
 {
@@ -26,7 +30,7 @@ public class ViewLibrarianPanel extends JPanel
    {
       JFrame frame = new JFrame();
       LibrarianTableModel model = new LibrarianTableModel();
-      ViewLibrarianPanel panel = new ViewLibrarianPanel();
+      ViewLibrarianPanel panel = new ViewLibrarianPanel(model);
 
       frame.add(panel);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,6 +1,10 @@
 package sarpong.david.controller;
 
 import java.awt.event.*;
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.table.*;
 
 import sarpong.david.view.*;
 import sarpong.david.model.*;
@@ -15,6 +19,11 @@ public class Controller
       this.model = model;
       this.view = view;
 
+      initResponsiveness();
+   }
+
+   private void initResponsiveness()
+   {
       this.view.addAdminLoginListener(userLoginListener);
       this.view.addLibrarianLoginListener(userLoginListener);
       this.view.addLogoutListener(logoutListener);
@@ -112,7 +121,8 @@ public class Controller
       @Override
       public void actionPerformed(ActionEvent e)
       {
-    
+         LibrarianTableModel librarianModel = model.viewLibrarianModel();
+         view.displayViewLibrarians(librarianModel);
       }
    };
 

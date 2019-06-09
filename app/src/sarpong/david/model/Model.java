@@ -110,8 +110,16 @@ public class Model
    {
       String sql = "SELECT * FROM lib.user_profile WHERE role='Librarian'";
 
-      resultSet = statement.executeQuery(sql);
-      librarianModel = new LibrarianTableModel(resultSet);
+      try
+      {
+         resultSet = statement.executeQuery(sql);
+         librarianModel = new LibrarianTableModel(resultSet);
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot query from viewLibrarians");
+         System.exit(1);
+      }
 
       return librarianModel;
    }
@@ -130,8 +138,16 @@ public class Model
    {
       String sql = "SELECT * FROM lib.books WHERE issued='0'";
 
-      resultSet = statement.executeQuery(sql);
-      bookModel = new BookTableModel(resultSet);
+      try
+      {
+         resultSet = statement.executeQuery(sql);
+         bookModel = new BookTableModel(resultSet);
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot query from viewLibrarians");
+         System.exit(1);
+      }
 
       return bookModel;
    }

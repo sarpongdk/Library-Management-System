@@ -1,3 +1,5 @@
+package sarpong.david.model;
+
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -16,17 +18,33 @@ public class BookTableModel extends AbstractTableModel
    public BookTableModel(ResultSet set)
    {
       resultSet = set;
-      rowCount = resultSet.last().getRow();
-
-      resultSet.beforeFirst();
+      
+      try
+      {
+         resultSet.last();
+         rowCount = resultSet.getRow();
+         resultSet.beforeFirst();
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot instantiate the BookTableModel constructor");
+      }
    }
 
    public void setResultSet(ResultSet set)
    {
       resultSet = set;
-      rowCount = resultSet.last().getRow();
 
-      resultSet.beforeFirst();
+      try
+      {
+         resultSet.last();
+         rowCount = resultSet.getRow();
+         resultSet.beforeFirst();
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot instantiate the BookTableModel constructor");
+      }
    }
 
    @Override
@@ -58,38 +76,46 @@ public class BookTableModel extends AbstractTableModel
    public Object getValueAt(int row, int column)
    {
       int i = 0;
-      while (resultSet.next())
+      Object val = null;
+      
+      try
       {
-         if (i == row)
+         while (resultSet.next())
          {
-            break;
+            if (i == row)
+            {
+               break;
+            }
+         
+            i++;
          }
          
-         i++;
+         switch (column)
+         {
+            case 0:
+               val = resultSet.getString("title");
+               break;
+
+            case 1:
+               val = resultSet.getString("author");
+               break;
+
+            case 2:
+               val = resultSet.getInt("year");
+               break;
+
+            case 3:
+               val = resultSet.getInt("isbn");
+               break;
+
+            case 4:
+               val = resultSet.getBoolean("issued");
+               break;
+         }
       }
-
-      Object val = null;
-      switch (column)
+      catch (Exception e)
       {
-         case 0:
-            val = resultSet.getString("title");
-            break;
-
-         case 1:
-            val = resultSet.getString("author");
-            break;
-
-         case 2:
-            val = resultSet.getInt("year");
-            break;
-
-         case 3:
-            val = resultSet.getInt("isbn");
-            break;
-
-         case 4:
-            val = resultSet.getBoolean("issued");
-            break;
+         System.err.println("Cannot retrieve query from BookTableModel");
       }
 
       return val;

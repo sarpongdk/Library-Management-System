@@ -3,6 +3,7 @@ package sarpong.david.view;
 import sarpong.david.model.*;
 
 import javax.swing.*;
+import javax.swing.table.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -16,6 +17,7 @@ public class View extends JFrame
    public static final int WIDTH = 650;
    public static final int HEIGHT = 450;
 
+   private ViewLibrarianPanel viewLibrarianPanel;
    private UserLogin userLogin;
    private RegistrationPanel register;
    private LoginPanel login;
@@ -37,6 +39,13 @@ public class View extends JFrame
       add(login, BorderLayout.CENTER);
       pack();
       setVisible(true);
+   }
+
+   public void displayViewLibrarians(AbstractTableModel model)
+   {
+      viewLibrarianPanel = new ViewLibrarianPanel(model);
+
+      changePanel(viewLibrarianPanel);
    }
 
    public void setRegistrationRole(Role role)
@@ -166,7 +175,7 @@ public class View extends JFrame
    
    public void addViewLibrarianListener(ActionListener listener)
    {
-      admin.addViewLibrariaListener(listener);
+      admin.addViewLibrarianListener(listener);
    }
    
    public void addDeleteLibrarianListener(ActionListener listener)
