@@ -14,6 +14,8 @@ public class Model
    private static final String USERNAME = "projects";
    private static final String PASSWORD = "password";
 
+   private LibrarianTableModel librarianModel;
+   private BookTableModel bookModel;
    private Connection connection;
    private Statement statement;
    private PreparedStatement preparedStatement;
@@ -70,27 +72,8 @@ public class Model
       Email email = staff.getEmail();
       String username = staff.getUsername();
       int age = staff.getAge();
-      Gender gender = staff.getGender();
-      Role role = staff.getRole();
-      String sex, pos;
-
-      if (gender == Gender.Male)
-      {
-         sex = "Male";
-      }
-      else
-      {
-         sex = "Female";
-      }
-
-      if (role == Role.Admin)
-      {
-         pos = "Admin";
-      }
-      else
-      {
-         pos = "Librarian";
-      }
+      String sex = staff.getGender().name();
+      String pos = staff.getRole().name();
 
       try
       {
@@ -123,9 +106,14 @@ public class Model
     
    }
 
-   public void viewLibrarian()
+   public LibrarianTableModel viewLibrarianModel()
    {
-          
+      String sql = "SELECT * FROM lib.user_profile WHERE role='Librarian'";
+
+      resultSet = statement.executeQuery(sql);
+      librarianModel = new LibrarianTableModel(resultSet);
+
+      return librarianModel;
    }
 
    public void deleteLibrarian(Librarian librarian)
@@ -138,9 +126,14 @@ public class Model
     
    }
 
-   public void viewBook()
+   public BookTableModel viewBookModel()
    {
- 
+      String sql = "SELECT * FROM lib.books WHERE issued='0'";
+
+      resultSet = statement.executeQuery(sql);
+      bookModel = new BookTableModel(resultSet);
+
+      return bookModel;
    }
 
    public static void main(String[] args)

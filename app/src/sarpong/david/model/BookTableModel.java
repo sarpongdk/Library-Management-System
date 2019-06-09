@@ -5,8 +5,8 @@ import java.sql.*;
 
 public class BookTableModel extends AbstractTableModel
 {
-   private static final String[] colNames = {"Title", "Author", "Year", "Issued"};
-   private static final Class[] colClasses = {String.class, String.class, Integer.class, Boolean.class};
+   private static final String[] colNames = {"Title", "Author", "Year", "ISBN", "Issued"};
+   private static final Class[] colClasses = {String.class, String.class, Integer.class, Integer.class, Boolean.class};
    
    private ResultSet resultSet;
    private int rowCount;
@@ -14,6 +14,14 @@ public class BookTableModel extends AbstractTableModel
    public BookTableModel() {}
 
    public BookTableModel(ResultSet set)
+   {
+      resultSet = set;
+      rowCount = resultSet.last().getRow();
+
+      resultSet.beforeFirst();
+   }
+
+   public void setResultSet(ResultSet set)
    {
       resultSet = set;
       rowCount = resultSet.last().getRow();
@@ -76,6 +84,10 @@ public class BookTableModel extends AbstractTableModel
             break;
 
          case 3:
+            val = resultSet.getInt("isbn");
+            break;
+
+         case 4:
             val = resultSet.getBoolean("issued");
             break;
       }

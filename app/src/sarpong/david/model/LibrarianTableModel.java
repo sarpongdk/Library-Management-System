@@ -21,6 +21,14 @@ public class LibrarianTableModel extends AbstractTableModel
       resultSet.beforeFirst();
    }
 
+   public void setResultSet(ResultSet set)
+   {
+      resultSet = set;
+      rowCount = resultSet.last().getRow();
+
+      resultSet.beforeFirst();
+   }
+
    @Override
    public String getColumnName(int column)
    {
