@@ -21,6 +21,9 @@ public class Controller
       this.view.addLoginListener(loginListener);
       this.view.addRegistrationListener(registrationListener);
       this.view.addCreateAccountListener(createAccountListener);
+      this.view.addLibrarianListener(addLibrarianListener);
+      this.view.addViewLibrarianListener(viewLibrarianListener);
+      this.view.addDeleteLibrarianListener(deleteLibrarianListener);
    }
 
    private ActionListener loginListener = new ActionListener() {
@@ -99,7 +102,8 @@ public class Controller
       @Override
       public void actionPerformed(ActionEvent e)
       {
-    
+         view.displayRegistration();
+         view.setRegistrationRole(Role.Librarian);
       }
    };
 

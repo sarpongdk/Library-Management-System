@@ -65,6 +65,20 @@ public class RegistrationPanel extends JPanel
       add(admin);
       add(register);
    }
+   
+   public void setRegistrationRole(Role role)
+   {
+      switch (role)
+      {
+         case Librarian:
+            librarian.setSelected(true);
+            break;
+
+         case Admin:
+            admin.setSelected(true);
+            break;
+      }
+   }
 
    public Role getAccessRights()
    {

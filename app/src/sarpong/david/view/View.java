@@ -39,6 +39,11 @@ public class View extends JFrame
       setVisible(true);
    }
 
+   public void setRegistrationRole(Role role)
+   {
+      register.setRegistrationRole(role);
+   }
+
    public String getLoginUsername()
    {
       return userLogin.getUsername();
@@ -152,6 +157,21 @@ public class View extends JFrame
    public void addCreateAccountListener(ActionListener listener)
    {
       login.addRegistrationListener(listener);
+   }
+   
+   public void addLibrarianListener(ActionListener listener)
+   {
+      admin.addLibrarianListener(listener);
+   }
+   
+   public void addViewLibrarianListener(ActionListener listener)
+   {
+      admin.addViewLibrariaListener(listener);
+   }
+   
+   public void addDeleteLibrarianListener(ActionListener listener)
+   {
+      admin.addDeleteLibrarianListener(listener);
    }
    
    public void clearLogin()
