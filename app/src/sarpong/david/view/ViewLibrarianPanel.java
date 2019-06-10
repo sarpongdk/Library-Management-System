@@ -27,6 +27,7 @@ public class ViewLibrarianPanel extends JPanel
       setPreferredSize(new Dimension(View.WIDTH, View.HEIGHT));
       setBorder(BorderFactory.createTitledBorder("Librarians"));
 
+      delete = new JButton("Delete");
       table = new JTable(model);
       table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
