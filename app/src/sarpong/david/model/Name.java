@@ -4,6 +4,23 @@ public class Name
 {
    private String first, last;
 
+   public Name(String name) throws IllegalArgumentException
+   {
+      String[] names = name.split(" ");
+      first = names[0];
+      last = names[1];
+
+      if (isValid(first) && isValid(last))
+      {
+         this.first = first;
+         this.last = last;
+      }
+      else
+      {
+         throw new IllegalArgumentException();
+      }
+   }
+
    public Name(String first, String last) throws IllegalArgumentException
    {
       if (isValid(first) && isValid(last))

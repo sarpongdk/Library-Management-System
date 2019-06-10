@@ -1,10 +1,6 @@
 package sarpong.david.controller;
 
 import java.awt.event.*;
-import java.awt.*;
-
-import javax.swing.*;
-import javax.swing.table.*;
 
 import sarpong.david.view.*;
 import sarpong.david.model.*;
@@ -32,7 +28,6 @@ public class Controller
       this.view.addCreateAccountListener(createAccountListener);
       this.view.addLibrarianListener(addLibrarianListener);
       this.view.addViewLibrarianListener(viewLibrarianListener);
-      this.view.addDeleteLibrarianListener(deleteLibrarianListener);
    }
 
    private ActionListener loginListener = new ActionListener() {
@@ -122,7 +117,7 @@ public class Controller
       public void actionPerformed(ActionEvent e)
       {
          LibrarianTableModel librarianModel = model.viewLibrarianModel();
-         view.displayViewLibrarians(librarianModel);
+         view.displayViewLibrarians(librarianModel, deleteLibrarianListener);
       }
    };
 
@@ -131,7 +126,9 @@ public class Controller
       @Override
       public void actionPerformed(ActionEvent e)
       {
-    
+         String username = view.getLibrarianToDeleteUsername();
+         view.updateDeletedLibrarian();
+         model.deleteLibrarian(username);
       }
    };
 

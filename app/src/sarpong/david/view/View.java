@@ -41,9 +41,15 @@ public class View extends JFrame
       setVisible(true);
    }
 
-   public void displayViewLibrarians(AbstractTableModel model)
+   public String getLibrarianToDeleteUsername()
+   {
+      return viewLibrarianPanel.getSelectedLibrarianUsername();
+   }
+
+   public void displayViewLibrarians(LibrarianTableModel model, ActionListener listener)
    {
       viewLibrarianPanel = new ViewLibrarianPanel(model);
+      viewLibrarianPanel.addDeleteLibrarianListener(listener);
 
       changePanel(viewLibrarianPanel);
    }
@@ -70,6 +76,11 @@ public class View extends JFrame
       pack();
       repaint();
       //revalidate();
+   }
+
+   public void updateDeletedLibrarian()
+   {
+      viewLibrarianPanel.deleteRow();
    }
 
    public String getRegistrationUsername()
@@ -176,11 +187,6 @@ public class View extends JFrame
    public void addViewLibrarianListener(ActionListener listener)
    {
       admin.addViewLibrarianListener(listener);
-   }
-   
-   public void addDeleteLibrarianListener(ActionListener listener)
-   {
-      admin.addDeleteLibrarianListener(listener);
    }
    
    public void clearLogin()

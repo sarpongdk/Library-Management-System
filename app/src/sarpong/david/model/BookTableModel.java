@@ -1,12 +1,15 @@
 package sarpong.david.model;
 
-import javax.swing.*;
 import javax.swing.table.*;
 
 import java.sql.*;
 
 public class BookTableModel extends AbstractTableModel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 4413001103402558826L;
    private static final String[] colNames = {"Title", "Author", "Year", "ISBN", "Issued"};
    private static final Class[] colClasses = {String.class, String.class, Integer.class, Integer.class, Boolean.class};
    
@@ -80,6 +83,7 @@ public class BookTableModel extends AbstractTableModel
       
       try
       {
+         resultSet.beforeFirst();
          while (resultSet.next())
          {
             if (i == row)
@@ -89,6 +93,7 @@ public class BookTableModel extends AbstractTableModel
          
             i++;
          }
+         
          
          switch (column)
          {

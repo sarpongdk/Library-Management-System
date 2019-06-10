@@ -1,34 +1,82 @@
 package sarpong.david.model;
 
-import javax.swing.*;
+import sarpong.david.model.*;
+
 import javax.swing.table.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class LibrarianTableModel extends AbstractTableModel
 {
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 1L;
    private static final String[] colNames = {"Name", "Email Address", "Username", "Age", "Gender", "Role"};
    private static final Class[] colClasses = {String.class, String.class, String.class, Integer.class, String.class, String.class};
-   
-   private ResultSet resultSet;
-   private int rowCount;
 
-   public LibrarianTableModel() {}
+   private ArrayList<Librarian> librarians;
+   private ResultSet resultSet;
+
+   public LibrarianTableModel() 
+   {
+      librarians = new ArrayList<>();
+   }
 
    public LibrarianTableModel(ResultSet set)
    {
       resultSet = set;
+      librarians = new ArrayList<>();
       
       try
       {
-         resultSet.last();
-         rowCount = resultSet.getRow();
-         resultSet.beforeFirst();
+         parseResultSet();
       }
       catch (Exception e)
       {
-         System.err.println("Cannot instantiate the BookTableModel constructor");
+         System.err.println("Cannot instantiate the LibrarianTableModel constructor");
       }
+   }
+
+   private void parseResultSet() throws SQLException
+   {
+      resultSet.beforeFirst();
+     
+      while (resultSet.next())
+      {
+         Gender sex = null;
+         String name = resultSet.getString("name");
+         Name librarianName = new Name(name);
+
+         String email = resultSet.getString("email_address");
+         Email emailAddress = new Email(email);
+
+         String username = resultSet.getString("username");
+         String role = resultSet.getString("role"); 
+         
+         String gender = resultSet.getString("gender");
+         if (gender.equals("Male"))
+         {
+            sex = Gender.Male;
+         }
+         else
+         {
+            sex = Gender.Female;
+         }
+
+         int age = resultSet.getInt("age");
+
+         Librarian librarian = new Librarian(librarianName, emailAddress, sex, age, username);
+         librarians.add(librarian);
+      }
+   }
+
+   public void deleteRow(int row)
+   {
+      librarians.remove(row);
+
+      fireTableRowsDeleted(row, row);
    }
 
    public void setResultSet(ResultSet set)
@@ -37,13 +85,11 @@ public class LibrarianTableModel extends AbstractTableModel
       
       try
       {
-         resultSet.last();
-         rowCount = resultSet.getRow();
-         resultSet.beforeFirst();
+         parseResultSet();
       }
       catch (Exception e)
       {
-         System.err.println("Cannot instantiate the BookTableModel constructor");
+         System.err.println("Cannot instantiate the LibrarianTableModel constructor");
       }
    }
 
@@ -62,7 +108,7 @@ public class LibrarianTableModel extends AbstractTableModel
    @Override
    public int getRowCount()
    {
-      return rowCount;
+      return librarians.size();
    }
 
    @Override
@@ -75,45 +121,35 @@ public class LibrarianTableModel extends AbstractTableModel
    @Override
    public Object getValueAt(int row, int column)
    {
-      int i = 0;
+      Librarian librarian = librarians.get(row);
       Object val = null;
       
       try
       {
-         while (resultSet.next())
-         {
-            if (i == row)
-            {
-               break;
-            }
-         
-            i++;
-         }
-      
          switch (column)
          {
             case 0:
-               val = resultSet.getString("name");
+               val = librarian.getName().toString();
                break;
 
             case 1:
-               val = resultSet.getString("email_address");
+               val = librarian.getEmail().toString();
                break;
 
             case 2:
-               val = resultSet.getString("username");
+               val = librarian.getUsername();
                break;
 
             case 3:
-               val = resultSet.getInt("age");
+               val = librarian.getAge();
                break;
 
             case 4:
-               val = resultSet.getString("gender");
+               val = librarian.getGender().name();
                break;
 
             case 5:
-               val = resultSet.getString("role");
+               val = librarian.getRole().name();
                break;
          }
 

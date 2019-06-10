@@ -101,9 +101,18 @@ public class Model
       }
    }
 
-   public void addLibrarian(Librarian librarian)
+   public void deleteLibrarian(String username)
    {
-    
+      String sql = "DELETE FROM lib.user_profile WHERE username='" + username + "'";
+
+      try
+      {
+         statement.executeUpdate(sql);
+      }
+      catch (Exception e)
+      {
+         System.out.println("Already deleted selected librarian");
+      }
    }
 
    public LibrarianTableModel viewLibrarianModel()
@@ -122,11 +131,6 @@ public class Model
       }
 
       return librarianModel;
-   }
-
-   public void deleteLibrarian(Librarian librarian)
-   {
-    
    }
 
    public void addBook(Book book)

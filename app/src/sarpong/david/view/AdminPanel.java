@@ -13,7 +13,6 @@ public class AdminPanel extends JPanel
    private static final long serialVersionUID = 1L;
    private JButton add;
    private JButton view;
-   private JButton delete;
    private JButton logout;
 
    public AdminPanel()
@@ -24,12 +23,10 @@ public class AdminPanel extends JPanel
 
       add = new JButton("Add Librarian");
       view = new JButton("View Librarian");
-      delete = new JButton("Delete Librarian");
       logout = new JButton("Logout");
 
       add(add);
       add(view);
-      add(delete);
       add(logout);
    }
 
@@ -41,11 +38,6 @@ public class AdminPanel extends JPanel
    public void addViewLibrarianListener(ActionListener listener)
    {
       view.addActionListener(listener);
-   }
-
-   public void addDeleteLibrarianListener(ActionListener listener)
-   {
-      delete.addActionListener(listener);
    }
 
    public void addLogoutListener(ActionListener listener)
