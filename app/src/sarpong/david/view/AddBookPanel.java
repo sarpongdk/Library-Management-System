@@ -9,6 +9,7 @@ import java.awt.event.*;
 public class AddBookPanel extends JPanel
 {
    private static final int MAX_CHARACTERS = 30;
+   private static final int MAX_ISBN = 8;
 
    private JButton addButton; 
    private PlaceHolderTextField title, author, year, isbn;
@@ -18,7 +19,7 @@ public class AddBookPanel extends JPanel
    {
       super();
 
-      isbn = new PlaceHolderTextField(MAX_CHARACTERS, "ISBN");
+      isbn = new PlaceHolderTextField(MAX_ISBN, "ISBN");
       title = new PlaceHolderTextField(MAX_CHARACTERS, "Title");
       author = new PlaceHolderTextField(MAX_CHARACTERS, "Author");
       year = new PlaceHolderTextField(4, "Year");

@@ -168,7 +168,7 @@ public class Model
 
       try
       {
-         String sql = "INSERT INTO lib.books VALUES (?, ?, ?, ?, ?, ?)";
+         String sql = "INSERT INTO lib.books VALUES (?, ?, ?, ?, ?)";
          preparedStatement = connection.prepareStatement(sql);
 
          preparedStatement.setString(1, title);
