@@ -20,6 +20,7 @@ public class Controller
 
    private void initResponsiveness()
    {
+      this.view.updateAddBookPanelListener(addBookPanelListener);
       this.view.addViewBookListener(viewBooksListener);
       this.view.addBookListener(addBooksListener);
       this.view.addAdminLoginListener(userLoginListener);
@@ -148,6 +149,17 @@ public class Controller
       public void actionPerformed(ActionEvent e)
       {
          view.displayLogin();
+      }
+   };
+
+   private ActionListener addBookPanelListener = new ActionListener() {
+      
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+         Book book = view.getBook();
+         view.clearAddBookDetails();
+         model.addBook(book);
       }
    };
 

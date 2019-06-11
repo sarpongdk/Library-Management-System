@@ -65,6 +65,16 @@ public class View extends JFrame
       return new Book(author, title, issued, year, isbn);
    }
 
+   public void updateAddBookPanelListener(ActionListener listener)
+   {
+      addBookPanel.addOnAddBookListener(listener);
+   }
+
+   public void clearAddBookDetails()
+   {
+      addBookPanel.clearAddBookDetails();
+   }
+
    public void addBookListener(ActionListener listener)
    {
       librarian.addBooksListener(listener);

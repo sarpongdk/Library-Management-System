@@ -36,6 +36,15 @@ public class AddBookPanel extends JPanel
       add(addButton);
    }
 
+   public void clearAddBookDetails()
+   {
+      title.setText("");
+      author.setText("");
+      year.setText("");
+      isbn.setText("");
+      isIssued.setSelected(false);
+   }
+
    public int getISBN()
    {
       return Integer.parseInt(isbn.getText());

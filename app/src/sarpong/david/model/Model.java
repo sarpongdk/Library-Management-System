@@ -160,7 +160,30 @@ public class Model
 
    public void addBook(Book book)
    {
-    
+      String title = book.getTitle();
+      String author = book.getAuthor();
+      int year = book.getYear();
+      int isbn = book.getISBN();
+      boolean issued = book.hasBeenIssued();
+
+      try
+      {
+         String sql = "INSERT INTO lib.books VALUES (?, ?, ?, ?, ?, ?)";
+         preparedStatement = connection.prepareStatement(sql);
+
+         preparedStatement.setString(1, title);
+         preparedStatement.setString(2, author);
+         preparedStatement.setInt(3, year);
+         preparedStatement.setInt(4, isbn);
+         preparedStatement.setBoolean(5, issued);
+
+         preparedStatement.executeUpdate();
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot add book to database");
+         e.printStackTrace();
+      }
    }
 
    public BookTableModel viewBookModel()
