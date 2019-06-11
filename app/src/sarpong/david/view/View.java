@@ -17,6 +17,8 @@ public class View extends JFrame
    public static final int WIDTH = 650;
    public static final int HEIGHT = 450;
 
+   private AddBookPanel addBookPanel;
+   private ViewBookPanel viewBookPanel;
    private ViewLibrarianPanel viewLibrarianPanel;
    private UserLogin userLogin;
    private RegistrationPanel register;
@@ -32,6 +34,7 @@ public class View extends JFrame
       librarian = new LibrarianPanel();
       register = new RegistrationPanel();
       userLogin = new UserLogin();
+      addBookPanel = new AddBookPanel();
 
       setLayout(new BorderLayout());
       setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -44,6 +47,38 @@ public class View extends JFrame
    public String getLibrarianToDeleteUsername()
    {
       return viewLibrarianPanel.getSelectedLibrarianUsername();
+   }
+
+   public void displayAddBook()
+   {
+      changePanel(addBookPanel);
+   }
+
+   public Book getBook()
+   {
+      String title = addBookPanel.getTitle();
+      String author = addBookPanel.getAuthor();
+      int year = addBookPanel.getYear();
+      int isbn = addBookPanel.getISBN();
+      boolean issued = addBookPanel.isIssued();
+
+      return new Book(author, title, issued, year, isbn);
+   }
+
+   public void addBookListener(ActionListener listener)
+   {
+      librarian.addBooksListener(listener);
+   }
+
+   public void displayViewBook(BookTableModel model)
+   {
+      viewBookPanel = new ViewBookPanel(model);
+      changePanel(viewBookPanel);
+   }
+
+   public void addViewBookListener(ActionListener listener)
+   {
+      librarian.addViewBooksListener(listener);
    }
 
    public void displayViewLibrarians(LibrarianTableModel model, ActionListener listener)

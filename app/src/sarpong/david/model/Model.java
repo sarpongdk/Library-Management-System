@@ -165,7 +165,7 @@ public class Model
 
    public BookTableModel viewBookModel()
    {
-      String sql = "SELECT * FROM lib.books WHERE issued='0'";
+      String sql = "SELECT * FROM lib.books";
 
       try
       {

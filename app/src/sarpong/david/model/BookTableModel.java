@@ -1,8 +1,11 @@
 package sarpong.david.model;
 
+import sarpong.david.model.*;
+
 import javax.swing.table.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class BookTableModel extends AbstractTableModel
 {
@@ -12,25 +15,44 @@ public class BookTableModel extends AbstractTableModel
    private static final long serialVersionUID = 4413001103402558826L;
    private static final String[] colNames = {"Title", "Author", "Year", "ISBN", "Issued"};
    private static final Class[] colClasses = {String.class, String.class, Integer.class, Integer.class, Boolean.class};
-   
-   private ResultSet resultSet;
-   private int rowCount;
 
-   public BookTableModel() {}
+   private ArrayList<Book> books;
+   private ResultSet resultSet;
+
+   public BookTableModel() 
+   {
+      books = new ArrayList<>();
+   }
 
    public BookTableModel(ResultSet set)
    {
       resultSet = set;
+      books = new ArrayList<>();
       
       try
       {
-         resultSet.last();
-         rowCount = resultSet.getRow();
-         resultSet.beforeFirst();
+         parseResultSet();
       }
       catch (Exception e)
       {
          System.err.println("Cannot instantiate the BookTableModel constructor");
+      }
+   }
+
+   private void parseResultSet() throws SQLException
+   {
+      resultSet.beforeFirst();
+     
+      while (resultSet.next())
+      {
+         String title = resultSet.getString("title");
+         String author = resultSet.getString("author");
+         int year = resultSet.getInt("year");
+         int isbn = resultSet.getInt("isbn"); 
+         boolean issued = resultSet.getBoolean("issued");
+
+         Book book = new Book(author, title, issued, year, isbn);
+         books.add(book);
       }
    }
 
@@ -40,14 +62,19 @@ public class BookTableModel extends AbstractTableModel
 
       try
       {
-         resultSet.last();
-         rowCount = resultSet.getRow();
-         resultSet.beforeFirst();
+         parseResultSet();
       }
       catch (Exception e)
       {
          System.err.println("Cannot instantiate the BookTableModel constructor");
       }
+   }
+
+   public void deleteRow(int row)
+   {
+      books.remove(row);
+
+      fireTableRowsDeleted(row, row);
    }
 
    @Override
@@ -65,7 +92,7 @@ public class BookTableModel extends AbstractTableModel
    @Override
    public int getRowCount()
    {
-      return rowCount;
+      return books.size();
    }
 
    @Override
@@ -78,49 +105,30 @@ public class BookTableModel extends AbstractTableModel
    @Override
    public Object getValueAt(int row, int column)
    {
-      int i = 0;
       Object val = null;
-      
-      try
+      Book book = books.get(row);
+
+      switch (column)
       {
-         resultSet.beforeFirst();
-         while (resultSet.next())
-         {
-            if (i == row)
-            {
-               break;
-            }
-         
-            i++;
-         }
-         
-         
-         switch (column)
-         {
-            case 0:
-               val = resultSet.getString("title");
-               break;
+         case 0:
+            val = book.getTitle();
+            break;
 
-            case 1:
-               val = resultSet.getString("author");
-               break;
+         case 1:
+            val = book.getAuthor();
+            break;
 
-            case 2:
-               val = resultSet.getInt("year");
-               break;
+         case 2:
+            val = book.getYear();
+            break;
 
-            case 3:
-               val = resultSet.getInt("isbn");
-               break;
+         case 3:
+            val = book.getISBN();
+            break;
 
-            case 4:
-               val = resultSet.getBoolean("issued");
-               break;
-         }
-      }
-      catch (Exception e)
-      {
-         System.err.println("Cannot retrieve query from BookTableModel");
+         case 4:
+            val = book.hasBeenIssued();
+            break;
       }
 
       return val;

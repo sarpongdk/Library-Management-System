@@ -6,13 +6,20 @@ public class Book
    private String title;
    private boolean issued;
    private int publicationYear;
-
-   public Book(String author, String title, boolean issued, int publicationYear)
+   private int isbn;
+ 
+   public Book(String author, String title, boolean issued, int publicationYear, int isbn)
    {
       this.author = author;
       this.title = title;
       this.issued = issued;
+      this.isbn = isbn;
       this.publicationYear = publicationYear;
+   }
+
+   public int getISBN()
+   {
+      return isbn;
    }
 
    public String getAuthor()
