@@ -66,6 +66,31 @@ public class Model
       }
    }
 
+   public String getAccessRights(String username)
+   {
+      String role = null;
+      username = username.trim();
+      String sql = "SELECT * FROM lib.user_profile WHERE username='" + username + "'";
+
+      try
+      {
+         resultSet = statement.executeQuery(sql);
+         
+         if (resultSet.next())
+         {
+            role = resultSet.getString("role");
+         }
+      }
+      catch (Exception e)
+      {
+         System.err.println("Cannot find query");
+         e.printStackTrace();
+         return null;
+      }
+
+      return role;
+   }
+
    public void createStaffAccount(AbstractStaff staff, String password)
    {
       Name name = staff.getName();

@@ -37,16 +37,24 @@ public class Controller
       {
          char[] password = view.getLoginPassword();
          String username = view.getLoginUsername();
-
+         view.clearLogin();
+         
          if (model.validateLogin(username, password))
          {
-            view.displayAdminSection(); //todo: display correct section based on role
+            String access = model.getAccessRights(username);
+            if (access.equals("Librarian"))
+            {
+               view.displayLibrarianSection();
+            }
+            else
+            {
+               view.displayAdminSection();
+            }
          }
          else
          {
             view.displayLoginError();
          }
-         view.clearLogin();
       }
    };
 
