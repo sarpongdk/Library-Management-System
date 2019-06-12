@@ -13,6 +13,7 @@ public class View extends JFrame
    /**
     * 
     */
+   private static Color bgColor = Color.gray;
    private static final long serialVersionUID = -599898895348122949L;
    public static final int WIDTH = 950;
    public static final int HEIGHT = 650;
@@ -23,16 +24,10 @@ public class View extends JFrame
    private ViewLibrarianPanel viewLibrarianPanel;
    private UserLogin userLogin;
    private RegistrationPanel register;
-//   private LoginPanel buttonsPanel.
-//   private AdminPanel buttonsPanel;
-//   private LibrarianPanel buttonsPanel;
 
    public View()
    {
       super("Library Management System");
-//      buttonsPanel.= new LoginPanel();
-//      buttonsPanel = new AdminPanel();
-//      buttonsPanel = new LibrarianPanel();
       register = new RegistrationPanel();
       userLogin = new UserLogin();
       addBookPanel = new AddBookPanel();

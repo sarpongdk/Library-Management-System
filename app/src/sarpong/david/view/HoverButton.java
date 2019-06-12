@@ -41,6 +41,12 @@ public class HoverButton extends JButton implements MouseListener
    }
 
    @Override
+   public Dimension getPreferredSize()
+   {
+      return new Dimension(ButtonPanel.WIDTH, HEIGHT);
+   }
+
+   @Override
    public void mouseClicked(MouseEvent e) {}
 
    @Override
