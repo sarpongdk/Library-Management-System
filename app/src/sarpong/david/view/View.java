@@ -14,32 +14,35 @@ public class View extends JFrame
     * 
     */
    private static final long serialVersionUID = -599898895348122949L;
-   public static final int WIDTH = 650;
-   public static final int HEIGHT = 450;
+   public static final int WIDTH = 950;
+   public static final int HEIGHT = 650;
 
+   private ButtonPanel buttonsPanel;
    private AddBookPanel addBookPanel;
    private ViewBookPanel viewBookPanel;
    private ViewLibrarianPanel viewLibrarianPanel;
    private UserLogin userLogin;
    private RegistrationPanel register;
-   private LoginPanel login;
-   private AdminPanel admin;
-   private LibrarianPanel librarian;
+   private LoginPanel buttonsPanel.
+   private AdminPanel buttonsPanel;
+   private LibrarianPanel buttonsPanel;
 
    public View()
    {
       super("Library Management System");
-      login = new LoginPanel();
-      admin = new AdminPanel();
-      librarian = new LibrarianPanel();
+      buttonsPanel.= new LoginPanel();
+      buttonsPanel = new AdminPanel();
+      buttonsPanel = new LibrarianPanel();
       register = new RegistrationPanel();
       userLogin = new UserLogin();
       addBookPanel = new AddBookPanel();
+      buttonsPanel = new ButtonPanel();
 
+      buttonsPanel.displayUserLogin();
       setLayout(new BorderLayout());
       setPreferredSize(new Dimension(WIDTH, HEIGHT));
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      add(login, BorderLayout.CENTER);
+      add(buttonsPanel.BorderLayout.WEST);
       pack();
       setVisible(true);
    }
@@ -77,7 +80,7 @@ public class View extends JFrame
 
    public void addBookListener(ActionListener listener)
    {
-      librarian.addBooksListener(listener);
+      buttonsPanel.addBooksListener(listener);
    }
 
    public void displayViewBook(BookTableModel model)
@@ -88,7 +91,7 @@ public class View extends JFrame
 
    public void addViewBookListener(ActionListener listener)
    {
-      librarian.addViewBooksListener(listener);
+      buttonsPanel.addViewBooksListener(listener);
    }
 
    public void displayViewLibrarians(LibrarianTableModel model, ActionListener listener)
@@ -170,17 +173,17 @@ public class View extends JFrame
    
    public void displayLogin()
    {
-      changePanel(login);
+      changePanel(buttonsPanel.;
    }
 
    public void displayAdminSection()
    {
-      changePanel(admin);
+      changePanel(buttonsPanel);
    }
 
    public void displayLibrarianSection()
    {
-      changePanel(librarian);
+      changePanel(buttonsPanel);
    }
 
    public void displayRegistration()
@@ -200,12 +203,12 @@ public class View extends JFrame
 
    public void addLibrarianLoginListener(ActionListener listener)
    {
-      login.addLibrarianLoginListener(listener);
+      buttonsPanel.addLibrarianLoginListener(listener);
    }
 
    public void addAdminLoginListener(ActionListener listener)
    {
-      login.addAdminLoginListener(listener);
+      buttonsPanel.addAdminLoginListener(listener);
    }
    
    public void addRegistrationListener(ActionListener listener)
@@ -215,23 +218,23 @@ public class View extends JFrame
 
    public void addLogoutListener(ActionListener listener)
    {
-      admin.addLogoutListener(listener);
-      librarian.addLogoutListener(listener);
+      buttonsPanel.addLogoutListener(listener);
+      buttonsPanel.addLogoutListener(listener);
    }
 
    public void addCreateAccountListener(ActionListener listener)
    {
-      login.addRegistrationListener(listener);
+      buttonsPanel.addRegistrationListener(listener);
    }
    
    public void addLibrarianListener(ActionListener listener)
    {
-      admin.addLibrarianListener(listener);
+      buttonsPanel.addLibrarianListener(listener);
    }
    
    public void addViewLibrarianListener(ActionListener listener)
    {
-      admin.addViewLibrarianListener(listener);
+      buttonsPanel.addViewLibrarianListener(listener);
    }
    
    public void clearLogin()
