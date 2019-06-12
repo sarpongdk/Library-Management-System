@@ -23,8 +23,7 @@ public class Controller
       this.view.updateAddBookPanelListener(addBookPanelListener);
       this.view.addViewBookListener(viewBooksListener);
       this.view.addBookListener(addBooksListener);
-      this.view.addAdminLoginListener(userLoginListener);
-      this.view.addLibrarianLoginListener(userLoginListener);
+      this.view.addStaffLoginListener(userLoginListener);
       this.view.addLogoutListener(logoutListener);
       this.view.addLoginListener(loginListener);
       this.view.addRegistrationListener(registrationListener);

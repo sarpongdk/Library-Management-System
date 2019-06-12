@@ -23,16 +23,16 @@ public class View extends JFrame
    private ViewLibrarianPanel viewLibrarianPanel;
    private UserLogin userLogin;
    private RegistrationPanel register;
-   private LoginPanel buttonsPanel.
-   private AdminPanel buttonsPanel;
-   private LibrarianPanel buttonsPanel;
+//   private LoginPanel buttonsPanel.
+//   private AdminPanel buttonsPanel;
+//   private LibrarianPanel buttonsPanel;
 
    public View()
    {
       super("Library Management System");
-      buttonsPanel.= new LoginPanel();
-      buttonsPanel = new AdminPanel();
-      buttonsPanel = new LibrarianPanel();
+//      buttonsPanel.= new LoginPanel();
+//      buttonsPanel = new AdminPanel();
+//      buttonsPanel = new LibrarianPanel();
       register = new RegistrationPanel();
       userLogin = new UserLogin();
       addBookPanel = new AddBookPanel();
@@ -42,7 +42,7 @@ public class View extends JFrame
       setLayout(new BorderLayout());
       setPreferredSize(new Dimension(WIDTH, HEIGHT));
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      add(buttonsPanel.BorderLayout.WEST);
+      add(buttonsPanel, BorderLayout.WEST);
       pack();
       setVisible(true);
    }
@@ -120,6 +120,7 @@ public class View extends JFrame
    private void changePanel(JPanel panel)
    {
       getContentPane().removeAll();
+      add(buttonsPanel, BorderLayout.WEST);
       add(panel, BorderLayout.CENTER);
       pack();
       repaint();
@@ -173,17 +174,17 @@ public class View extends JFrame
    
    public void displayLogin()
    {
-      changePanel(buttonsPanel.;
+      buttonsPanel.displayUserLogin();
    }
 
    public void displayAdminSection()
    {
-      changePanel(buttonsPanel);
+      buttonsPanel.displayAdminSection();
    }
 
    public void displayLibrarianSection()
    {
-      changePanel(buttonsPanel);
+      buttonsPanel.displayLibrarianSection();
    }
 
    public void displayRegistration()
@@ -201,14 +202,9 @@ public class View extends JFrame
       userLogin.addLoginListener(listener);
    }
 
-   public void addLibrarianLoginListener(ActionListener listener)
+   public void addStaffLoginListener(ActionListener listener)
    {
-      buttonsPanel.addLibrarianLoginListener(listener);
-   }
-
-   public void addAdminLoginListener(ActionListener listener)
-   {
-      buttonsPanel.addAdminLoginListener(listener);
+      buttonsPanel.addStaffLoginListener(listener);
    }
    
    public void addRegistrationListener(ActionListener listener)
