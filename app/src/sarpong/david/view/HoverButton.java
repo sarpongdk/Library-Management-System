@@ -33,15 +33,25 @@ public class HoverButton extends JButton implements MouseListener
 
    private void initButton()
    {
+      setBackground(color);
       setFont(new Font("Arial", Font.PLAIN, 25));
       setBorder(new LineBorder(color));
       setOpaque(true);
-      setPreferredSize(new Dimension(ButtonPanel.WIDTH, HEIGHT));
+
+      Dimension dimension = new Dimension(ButtonPanel.WIDTH, HEIGHT);
+      setPreferredSize(dimension);
+      setMinimumSize(dimension);
       addMouseListener(this);
    }
 
    @Override
    public Dimension getPreferredSize()
+   {
+      return new Dimension(ButtonPanel.WIDTH, HEIGHT);
+   }
+
+   @Override
+   public Dimension getMinimumSize()
    {
       return new Dimension(ButtonPanel.WIDTH, HEIGHT);
    }
@@ -58,6 +68,7 @@ public class HoverButton extends JButton implements MouseListener
    @Override
    public void mouseExited(MouseEvent e)
    {
+      setFont(new Font("Arial", Font.PLAIN, 25));
       setBackground(Color.WHITE);
    }
 

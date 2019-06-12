@@ -42,6 +42,7 @@ public class ButtonPanel extends JPanel
       add(logout);
 
       repaint();
+      revalidate();
    }
 
    public void displayLibrarianSection()

@@ -119,7 +119,7 @@ public class View extends JFrame
       add(panel, BorderLayout.CENTER);
       pack();
       repaint();
-      //revalidate();
+      revalidate();
    }
 
    public void updateDeletedLibrarian()
@@ -170,16 +170,19 @@ public class View extends JFrame
    public void displayLogin()
    {
       buttonsPanel.displayUserLogin();
+      changePanel(buttonsPanel);
    }
 
    public void displayAdminSection()
    {
       buttonsPanel.displayAdminSection();
+      changePanel(viewLibrarianPanel);
    }
 
    public void displayLibrarianSection()
    {
       buttonsPanel.displayLibrarianSection();
+      changePanel(viewBookPanel);
    }
 
    public void displayRegistration()
