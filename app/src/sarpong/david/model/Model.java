@@ -10,7 +10,7 @@ import java.sql.*;
 public class Model
 {
    private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
-   private static final String URL = "jdbc:mysql://localhost:3306/lib";
+   private static final String URL = "jdbc:mysql://localhost:3306/lib?serverTimezone=UTC";
    private static final String USERNAME = "projects";
    private static final String PASSWORD = "password";
 
